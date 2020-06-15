@@ -117,9 +117,9 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             defaults.set(editedPlace.placeLong, forKey: "longitude")
             defaults.set(true, forKey: "bool")
             
-            let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
-            mapVC.dragablePin()
-            self.navigationController?.pushViewController(mapVC, animated: true)
+            let mapViewVC = self.storyboard?.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
+            mapViewVC.dragablePin()
+            self.navigationController?.pushViewController(mapViewVC, animated: true)
             
     //        print(editedPlace.placeLat , editedPlace.placeLong)
             
