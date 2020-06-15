@@ -242,7 +242,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
                 if let cntry = placemark.country {
                                         country += cntry
                                     }
-    //          print(placeName ,city, state, postalCode , country)
+    
                 
                 
                 let place = Places(placeLat: self.destinationCoordinates.latitude, placeLong:self.destinationCoordinates.longitude, placeName: placeName, city: city, postalCode: postalCode, country: country)

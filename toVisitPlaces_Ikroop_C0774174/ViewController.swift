@@ -24,17 +24,19 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             super.viewDidLoad()
           tableView.delegate = self
            tableView.dataSource = self
+            loadData()
+            self.tableView.reloadData()
             
 
             
             
         }
         
-        override func viewWillAppear(_ animated: Bool) {
-            loadData()
-            self.tableView.reloadData()
+      //  override func viewWillAppear(_ animated: Bool) {
+           // loadData()
+          //  self.tableView.reloadData()
             
-        }
+        //}
         
         func getDataFilePath() -> String {
                let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -49,7 +51,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             
             if FileManager.default.fileExists(atPath: filePath){
                 do{
-                    //creating string of file path
+                    
                  let fileContent = try String(contentsOfFile: filePath)
                     
                     let contentArray = fileContent.components(separatedBy: "\n")
@@ -62,7 +64,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
                         }
                 }
                    
-    //                print(self.places?.count)
+    
                 }
                 catch{
                     print(error)
@@ -85,7 +87,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             }
         }
 
-        // MARK: - Table view data source
+      
 
         func numberOfSections(in tableView: UITableView) -> Int {
             // #warning Incomplete implementation, return the number of sections
@@ -93,7 +95,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
         }
 
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            // #warning Incomplete implementation, return the number of rows
+            
             return places?.count ?? 0
         }
 
@@ -105,7 +107,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             cell?.textLabel?.text = place.placeName + " , " + place.city
             cell?.detailTextLabel?.text = place.country + " , " + place.postalCode
         
-    //        print(place.placeName, place.country)
+    
             return cell!
         }
         
@@ -121,27 +123,16 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             mapViewVC.dragablePin()
             self.navigationController?.pushViewController(mapViewVC, animated: true)
             
-    //        print(editedPlace.placeLat , editedPlace.placeLong)
-            
-            
-            
-    //        print(self.places?[indexPath.row].placeName)
+    
         }
 
-        /*
-        // Override to support conditional editing of the table view.
-        override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            // Return false if you do not want the specified item to be editable.
-            return true
-        }
-        */
+        
         
        
-        // Override to support editing the table view.
+        
          func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             
-    //        var deletedRowArray = self.places?.remove(at: indexPath.row)
-        
+    
             if editingStyle == .delete {
                 
                 self.places?.remove(at: indexPath.row)
@@ -150,10 +141,10 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
                 self.deleteArray = self.places
                 deleteRow()
                 
-    //            print("delete")
+   
                 
             } else if editingStyle == .insert {
-                // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+                
             }
         }
         
