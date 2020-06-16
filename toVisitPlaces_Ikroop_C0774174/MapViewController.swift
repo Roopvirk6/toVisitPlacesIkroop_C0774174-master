@@ -20,7 +20,10 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
         var destinationCoordinates : CLLocationCoordinate2D!
         let destCoordinate = MKDirections.Request()
         let button = UIButton()
+    
         var places:[Places]?
+    
+    
         let defaults = UserDefaults.standard
         var lat : Double = 0.0
         var long : Double = 0.0
