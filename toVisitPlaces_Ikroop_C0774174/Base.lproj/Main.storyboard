@@ -74,6 +74,32 @@
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="115.7608695652174"/>
         </scene>
+        <!--EditMapViewController-->
+        <scene sceneID="Rkg-ea-bsb">
+            <objects>
+                <viewController title="EditMapViewController" id="VwB-Ae-8j5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mLL-dc-3IZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="yyH-Tk-bbr">
+                                <rect key="frame" x="20" y="0.0" width="374" height="736"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="yyH-Tk-bbr" firstAttribute="leading" secondItem="BhC-f5-jZA" secondAttribute="leading" constant="20" id="7mx-Gg-3ZM"/>
+                            <constraint firstItem="yyH-Tk-bbr" firstAttribute="top" secondItem="BhC-f5-jZA" secondAttribute="top" id="KKq-U7-nTs"/>
+                            <constraint firstItem="BhC-f5-jZA" firstAttribute="trailing" secondItem="yyH-Tk-bbr" secondAttribute="trailing" constant="20" id="pSr-e1-03U"/>
+                            <constraint firstItem="BhC-f5-jZA" firstAttribute="bottom" secondItem="yyH-Tk-bbr" secondAttribute="bottom" id="uS9-ux-bhJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BhC-f5-jZA"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cIP-Ii-Hvu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="970" y="770"/>
+        </scene>
         <!--Map View Controller-->
         <scene sceneID="F0F-bQ-raZ">
             <objects>

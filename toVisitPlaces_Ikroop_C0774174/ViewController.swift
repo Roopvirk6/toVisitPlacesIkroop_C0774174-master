@@ -24,19 +24,18 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             super.viewDidLoad()
           tableView.delegate = self
            tableView.dataSource = self
-            loadData()
-            self.tableView.reloadData()
+            
             
 
             
             
         }
         
-      //  override func viewWillAppear(_ animated: Bool) {
-           // loadData()
-          //  self.tableView.reloadData()
+      override func viewWillAppear(_ animated: Bool) {
+           loadData()
+          self.tableView.reloadData()
             
-        //}
+        }
         
         func getDataFilePath() -> String {
                let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
