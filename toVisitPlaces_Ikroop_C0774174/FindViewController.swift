@@ -8,13 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
-    
-    
-    @IBOutlet weak var tableView: UITableView!
-    
-        
-        var places : [Places]?
+class FindViewController: UITableViewController{
+    var places : [Places]?
         
         var deleteArray : [Places]?
         
@@ -22,18 +17,12 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
         
         override func viewDidLoad() {
             super.viewDidLoad()
-          tableView.delegate = self
-           tableView.dataSource = self
-            
-            
-
-            
-            
+        
         }
         
-      override func viewWillAppear(_ animated: Bool) {
-           loadData()
-          self.tableView.reloadData()
+        override func viewWillAppear(_ animated: Bool) {
+            loadData()
+            self.tableView.reloadData()
             
         }
         
@@ -50,7 +39,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             
             if FileManager.default.fileExists(atPath: filePath){
                 do{
-                    
+                    //creating string of file path
                  let fileContent = try String(contentsOfFile: filePath)
                     
                     let contentArray = fileContent.components(separatedBy: "\n")
@@ -62,8 +51,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
                             places?.append(place)
                         }
                 }
-                   
-    
+ 
                 }
                 catch{
                     print(error)
@@ -87,51 +75,43 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
         }
 
       
+      
 
-        func numberOfSections(in tableView: UITableView) -> Int {
+        override func numberOfSections(in tableView: UITableView) -> Int {
             // #warning Incomplete implementation, return the number of sections
             return 1
         }
 
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            
+        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            // #warning Incomplete implementation, return the number of rows
             return places?.count ?? 0
         }
 
         
-         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             
             let place = self.places![indexPath.row]
-            let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "placeCell")
             cell?.textLabel?.text = place.placeName + " , " + place.city
             cell?.detailTextLabel?.text = place.country + " , " + place.postalCode
+            
+    //        cell?.contentView.backgroundColor = UIColor.
         
-    
+    //        print(place.placeName, place.country)
             return cell!
         }
         
-         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            
-            let editedPlace =  self.places![indexPath.row]
-            
-            defaults.set(editedPlace.placeLat, forKey: "latitude")
-            defaults.set(editedPlace.placeLong, forKey: "longitude")
-            defaults.set(true, forKey: "bool")
-            
-            let mapViewVC = self.storyboard?.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
-            mapViewVC.dragablePin()
-            self.navigationController?.pushViewController(mapViewVC, animated: true)
-            
-    
+        override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         }
 
-        
+      
         
        
+        // Override to support editing the table view.
+        override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-         func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            
-    
+        
             if editingStyle == .delete {
                 
                 self.places?.remove(at: indexPath.row)
@@ -139,19 +119,12 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
                 
                 self.deleteArray = self.places
                 deleteRow()
-                
-   
-                
-            } else if editingStyle == .insert {
+            
                 
             }
         }
         
 
-        
-
+       
     }
 
-    
-    
-  
